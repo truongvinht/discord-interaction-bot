@@ -13,6 +13,7 @@ const {
 } = require("discord-interactions");
 const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
+const GIRandomFigure = require("./commands/GIRandomFigure")
 
 const app = express();
 
@@ -41,6 +42,11 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == "girng") {
       const cmd = new GIRandomPick(res);
+      return cmd.send(interaction);
+    }
+
+    if (interaction.data.name == "gifig") {
+      const cmd = new GIRandomFigure(res);
       return cmd.send(interaction);
     }
 
@@ -82,6 +88,11 @@ app.get("/register_commands", async (req, res) => {
     },
     {
       name: "girng",
+      description: "get random selection",
+      options: [],
+    },
+    {
+      name: "gifig",
       description: "get random figure to play",
       options: [],
     },
