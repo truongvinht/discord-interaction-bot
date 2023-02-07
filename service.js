@@ -89,7 +89,7 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIRandomFigure.cmd,
       description: "get random selection",
-      options: [],
+      options: [p1,p2,p3,p4],
     },
     {
       name: GIRandomPick.cmd,

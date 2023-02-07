@@ -12,13 +12,14 @@ class GIRandomFigure {
 
   send(interaction) {
     const figures = data.figures;
+    const names = interaction.names;
 
     let pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
 
     return this.res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `@${interaction.member.user.username}, spiele mal ${figures[pickedFigure]}.`,
+          content: `${interaction.member.user.username}, spiele mal ${figures[pickedFigure]}.`,
         },
       });
   }
