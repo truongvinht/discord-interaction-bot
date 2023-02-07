@@ -5,6 +5,7 @@ const logger = LogHelper.getInstance();
 const data = require("./figures.json")
 
 class GIRandomFigure {
+  static cmd = 'rngfigure';
   constructor(res) {
     this.res = res;
   }
@@ -17,7 +18,7 @@ class GIRandomFigure {
     return this.res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `${interaction.member.user.username}, spiele mal ${figures[pickedFigure]}.`,
+          content: `${interaction.member.user}, spiele mal ${figures[pickedFigure]}.`,
         },
       });
   }

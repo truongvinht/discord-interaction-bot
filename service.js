@@ -40,12 +40,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == "girng") {
+    if (interaction.data.name == GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == "gifig") {
+    if (interaction.data.name == GIRandomFigure.cmd) {
       const cmd = new GIRandomFigure(res);
       return cmd.send(interaction);
     }
@@ -87,12 +87,12 @@ app.get("/register_commands", async (req, res) => {
       options: [],
     },
     {
-      name: "girng",
+      name: GIRandomFigure.cmd,
       description: "get random selection",
       options: [],
     },
     {
-      name: "gifig",
+      name: GIRandomPick.cmd,
       description: "get random figure to play",
       options: [],
     },
