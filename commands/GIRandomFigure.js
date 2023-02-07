@@ -12,8 +12,8 @@ class GIRandomFigure {
 
   send(interaction) {
     const figures = data.figures;
-    const names = interaction.names;
-    console.log(names);
+    const names = interaction.data.options;
+    console.log(JSON.stringify(names));
 
     let pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
 

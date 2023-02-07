@@ -31,8 +31,6 @@ const discord_api = axios.create({
 
 app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
-  console.log(req.body);
-  console.log(req.header);
 
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     console.log(interaction.data.name);
