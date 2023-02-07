@@ -9,7 +9,7 @@ class GIRandomPick {
     this.res = res;
   }
 
-  send() {
+  send(interaction) {
     const types = data.types;
     const elements = data.elements;
 

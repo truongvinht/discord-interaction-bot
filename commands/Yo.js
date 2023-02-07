@@ -8,7 +8,7 @@ class Yo {
     this.res = res;
   }
 
-  send() {
+  send(interaction) {
     return this.res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {

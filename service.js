@@ -36,12 +36,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     // reply yo command
     if (interaction.data.name == "yo") {
       const cmd = new Yo(res);
-      return cmd.send();
+      return cmd.send(interaction);
     }
 
     if (interaction.data.name == "girng") {
       const cmd = new GIRandomPick(res);
-      return cmd.send();
+      return cmd.send(interaction);
     }
 
     if (interaction.data.name == "dm") {
