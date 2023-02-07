@@ -90,13 +90,7 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIRandomFigure.cmd,
       description: "Random Figurenauswahl",
-      options: [
-        {
-            "name": "PL",
-            "description": "Anzahl der Spieler",
-            "type": 4
-        }
-        ],
+      options: [],
     },
     {
       name: GIRandomPick.cmd,
