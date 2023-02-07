@@ -1,0 +1,18 @@
+{
+    "types": [
+        "Bogen",
+        "Stangenwaffe",
+        "Einhänder",
+        "Zweihänder",
+        "Katalysator"
+    ],
+    "elements": [
+        "Pyro",
+        "Hydro",
+        "Dendro",
+        "Elektro",
+        "Anemo",
+        "Kryo",
+        "Geo"
+    ]
+}

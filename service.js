@@ -12,6 +12,7 @@ const {
   verifyKeyMiddleware,
 } = require("discord-interactions");
 const Yo = require("./commands/Yo");
+const GIRandomPick = require("./commands/GIRandomPick")
 
 const app = express();
 
@@ -35,6 +36,11 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     // reply yo command
     if (interaction.data.name == "yo") {
       const cmd = new Yo(res);
+      return cmd.send();
+    }
+
+    if (interaction.data.name == "girandom") {
+      const cmd = new GIRandomPick(res);
       return cmd.send();
     }
 
