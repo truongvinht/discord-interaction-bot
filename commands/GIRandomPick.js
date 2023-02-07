@@ -26,4 +26,4 @@ class GIRandomPick {
   }
 }
 
-module.exports = Yo;
+module.exports = GIRandomPick;
