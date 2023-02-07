@@ -94,9 +94,8 @@ app.get("/register_commands", async (req, res) => {
         {
             "name": "PL",
             "description": "Anzahl der Spieler",
-            "type": 3,
-            "required": true
-        },
+            "type": 4
+        }
         ],
     },
     {
