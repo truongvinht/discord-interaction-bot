@@ -10,6 +10,7 @@ const {
   InteractionType,
   InteractionResponseType,
   verifyKeyMiddleware,
+  Option
 } = require("discord-interactions");
 const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
@@ -89,7 +90,13 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIRandomFigure.cmd,
       description: "get random selection",
-      options: [p1,p2,p3,p4],
+      options: [
+        {
+            "name": "p1",
+            "description": "Player 1",
+            "type": 6 
+        }
+        ],
     },
     {
       name: GIRandomPick.cmd,
