@@ -39,7 +39,7 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return cmd.send();
     }
 
-    if (interaction.data.name == "girandom") {
+    if (interaction.data.name == "girng") {
       const cmd = new GIRandomPick(res);
       return cmd.send();
     }
@@ -78,6 +78,11 @@ app.get("/register_commands", async (req, res) => {
     {
       name: "yo",
       description: "replies with Yo!",
+      options: [],
+    },
+    {
+      name: "girng",
+      description: "get random figure to play",
       options: [],
     },
     {
