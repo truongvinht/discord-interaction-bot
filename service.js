@@ -89,6 +89,7 @@ app.get("/register_commands", async (req, res) => {
     },
     {
       name: GIRandomFigure.cmd,
+      type: 1,
       description: "Zufällige Figurenauswahl",
       options: [
         {
