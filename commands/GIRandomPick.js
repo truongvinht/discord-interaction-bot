@@ -11,9 +11,10 @@ class GIRandomPick {
   }
 
   send(interaction) {
-    const PUBLIC_KEY = process.env.API_SERVER || "localhost:3000";
+    const SERVER = process.env.API_SERVER || "localhost:3000";
+    console.log(SERVER);
     // fetch
-    const response = fetch(`${PUBLIC_KEY}/api/yuanshen/elements`);
+    const response = fetch(`${SERVER}/api/yuanshen/elements`);
 
     let types = undefined;
     let elements = undefined;
