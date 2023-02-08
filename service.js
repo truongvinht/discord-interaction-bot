@@ -45,7 +45,8 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
-      return cmd.send(interaction,API_SERVER);
+      cmd.send(interaction,API_SERVER);
+      return;
     }
 
     if (interaction.data.name == GIRandomFigure.cmd) {
