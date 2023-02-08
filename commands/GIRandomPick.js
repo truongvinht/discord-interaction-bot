@@ -9,14 +9,14 @@ class GIRandomPick {
     this.res = res;
   }
 
-  async fetchData() {
+  async fetchData(apiServer) {
     return await fetch(`${apiServer}/api/yuanshen/elements`);
   }
 
   send(interaction, apiServer) {
 
     // fetch
-    const response = this.fetchData();
+    const response = this.fetchData(apiServer);
 
     let types = undefined;
     let elements = undefined;
