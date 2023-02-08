@@ -5,7 +5,7 @@ const logger = LogHelper.getInstance();
 const data = require("./figures.json")
 
 class GIRandomFigure {
-  static cmd = 'rngfigure';
+  static cmd = 'figure';
   constructor(res) {
     this.res = res;
   }
