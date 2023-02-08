@@ -3,6 +3,7 @@ const APPLICATION_ID = process.env.APPLICATION_ID;
 const TOKEN = process.env.TOKEN;
 const PUBLIC_KEY = process.env.PUBLIC_KEY || "not set";
 const GUILD_ID = process.env.GUILD_ID;
+const API_SERVER = process.env.API_SERVER || "localhost:3000";
 
 const axios = require("axios");
 const express = require("express");
@@ -44,7 +45,7 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
-      return cmd.send(interaction);
+      return cmd.send(interaction,API_SERVER);
     }
 
     if (interaction.data.name == GIRandomFigure.cmd) {

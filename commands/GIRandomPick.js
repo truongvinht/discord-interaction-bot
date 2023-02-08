@@ -10,11 +10,10 @@ class GIRandomPick {
     this.res = res;
   }
 
-  send(interaction) {
-    const SERVER = process.env.API_SERVER || "localhost:3000";
-    console.log(SERVER);
+  send(interaction, apiServer) {
+    console.log(apiServer);
     // fetch
-    const response = fetch(`${SERVER}/api/yuanshen/elements`);
+    const response = fetch(`${apiServer}/api/yuanshen/elements`);
 
     let types = undefined;
     let elements = undefined;
