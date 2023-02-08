@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const { InteractionResponseType } = require("discord-interactions");
 const LogHelper = require("../loaders/loghelper");
 const logger = LogHelper.getInstance();
@@ -10,9 +9,14 @@ class GIRandomPick {
     this.res = res;
   }
 
+  async fetchData() {
+    return await fetch(`${apiServer}/api/yuanshen/elements`);
+  }
+
   send(interaction, apiServer) {
+
     // fetch
-    const response = fetch(`${apiServer}/api/yuanshen/elements`);
+    const response = this.fetchData();
 
     let types = undefined;
     let elements = undefined;
