@@ -11,7 +11,6 @@ class GIRandomPick {
   }
 
   send(interaction, apiServer) {
-    console.log(apiServer);
     // fetch
     const response = fetch(`${apiServer}/api/yuanshen/elements`);
 
@@ -21,6 +20,7 @@ class GIRandomPick {
     if (!response.ok) {
       // fallback local json res
       elements = data.elements;
+      console.log(JSON.stringify(response));
     } else {
       
       const data = response.data;
