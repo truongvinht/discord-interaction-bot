@@ -41,7 +41,7 @@
         "Kaedehara Kazuha",
         "Kaeya",
         "Kamisato Ayaka",
-        "Kamisato Ayaka",
+        "Kamisato Ayato",
         "Keqing",
         "Klee",
         "Kujou Sara",
@@ -50,7 +50,6 @@
         "Lisa",
         "Mona",
         "Nahida",
-        "Nilou",
         "Ningguang",
         "Noelle",
         "Qiqi",
@@ -64,7 +63,6 @@
         "Saccherose",
         "Tartaglia/Childe",
         "Thoma",
-        "Tignari",
         "Venti",
         "Wanderer",
         "Xiangling",
@@ -76,7 +74,18 @@
         "Yoimiya",
         "Yun Jin",
         "Zhongli"
-
-
+    ],
+    "healer": [
+        "Barbara",
+        "Bennett",
+        "Diona",
+        "Dori",
+        "Jean",
+        "Kuki Shinobu",
+        "Noelle",
+        "Qiqi",
+        "Sangonomiya Kokomi",
+        "Sayu",
+        "Yaoyao"
     ]
 }
