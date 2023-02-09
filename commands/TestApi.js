@@ -18,6 +18,7 @@ class TestApi {
 
 
     response.then(content => {
+        console.log(JSON.stringify(content));
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
