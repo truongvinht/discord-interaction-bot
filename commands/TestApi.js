@@ -17,12 +17,14 @@ class TestApi {
     });
 
 
-    return this.res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
-        content: `${interaction.member.user.username}, etwas stimmt hier nicht ${response}.`,
-      },
-    });
+    response.then(content => {
+        this.res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+              content: `${interaction.member.user.username}, etwas stimmt hier nicht ${content.data[0].name}.`,
+            },
+          });
+    })
   }
 }
 
