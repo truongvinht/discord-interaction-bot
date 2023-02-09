@@ -9,11 +9,7 @@ class GIRandomPick {
     this.res = res;
   }
 
-  async fetchData(apiServer) {
-    return await fetch(`${apiServer}/api/yuanshen/elements`);
-  }
-
-  send(interaction, apiServer) {
+  send(interaction) {
 
     let types = undefined;
     let elements = undefined;
@@ -24,12 +20,11 @@ class GIRandomPick {
 
     let pickedType = Math.floor(Math.random() * Math.floor(types.length));
     let pickedElement = Math.floor(Math.random() * Math.floor(elements.length));
-    let pickedRate = Math.floor(Math.random() * Math.floor(2)) + 4;
 
     return this.res.send({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `${interaction.member.user.username}, suche dir eine ${elements[pickedElement]}-Figur aus, die ${types[pickedType]} und ${pickedRate}-Sterne ist.`,
+        content: `${interaction.member.user.username}, suche dir eine ${elements[pickedElement]}-Figur aus, die ${types[pickedType]} ist.`,
       },
     });
   }

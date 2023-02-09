@@ -17,6 +17,7 @@ const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
 const GIRandomFigure = require("./commands/GIRandomFigure")
 const GIRandomHealer = require("./commands/GIRandomHealer")
+const TestApi = require("./commands/TestApi")
 
 const app = express();
 
@@ -45,7 +46,7 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
-      return cmd.send(interaction,API_SERVER);
+      return cmd.send(interaction);
     }
 
     if (interaction.data.name == GIRandomFigure.cmd) {
@@ -55,6 +56,11 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == GIRandomHealer.cmd) {
       const cmd = new GIRandomHealer(res);
+      return cmd.send(interaction);
+    }
+
+    if (interaction.data.name == TestApi.cmd) {
+      const cmd = new TestApi(res);
       return cmd.send(interaction);
     }
 
@@ -107,6 +113,11 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIRandomHealer.cmd,
       description: "get random healer to play",
+      options: [],
+    },
+    {
+      name: TestApi.cmd,
+      description: "try out new api",
       options: [],
     },
     {
