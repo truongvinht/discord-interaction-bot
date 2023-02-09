@@ -2,6 +2,7 @@ const { InteractionResponseType } = require("discord-interactions");
 const LogHelper = require("../loaders/loghelper");
 const logger = LogHelper.getInstance();
 const data = require("./figures.json");
+const API_SERVER = process.env.API_SERVER || "localhost:3000";
 
 class TestApi {
   static cmd = "debug";
@@ -9,16 +10,14 @@ class TestApi {
     this.res = res;
   }
 
-  send(interaction, apiServer) {
+  send(interaction) {
 
-    const response = fetch(`${apiServer}/api/yuanshen/elements`).then(response => response.json())
+    const response = fetch(`${API_SERVER}/api/yuanshen/elements`).then(response => response.json())
     .catch(error => {
       console.error(error);
     });
 
-
     response.then(content => {
-        console.log(JSON.stringify(content));
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {

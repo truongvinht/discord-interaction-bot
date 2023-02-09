@@ -3,6 +3,7 @@ const { InteractionResponseType } = require('discord-interactions');
 const LogHelper = require("../loaders/loghelper");
 const logger = LogHelper.getInstance();
 const data = require("./figures.json")
+const API_SERVER = process.env.API_SERVER || "localhost:3000";
 
 class GIRandomFigure {
   static cmd = 'figure';
@@ -11,18 +12,27 @@ class GIRandomFigure {
   }
 
   send(interaction) {
-    const figures = data.figures;
-    const names = interaction.data.options;
-    console.log(JSON.stringify(names));
 
-    let pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
 
-    return this.res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: `${interaction.member.user.username}, spiele mal ${figures[pickedFigure]}.`,
-        },
-      });
+    const response = fetch(`${API_SERVER}/api/yuanshen/characters`).then(response => response.json())
+    .catch(error => {
+      console.error(error);
+    });
+
+    response.then(content => {
+        const figures = content.data;
+        const pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
+
+        // get the name
+        const name = figures[pickedFigure].name;
+
+        this.res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+              content: `${interaction.member.user.username}, spiele mal ${name}.`,
+            },
+          });
+    });
   }
 }
 
