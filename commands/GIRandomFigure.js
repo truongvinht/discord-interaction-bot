@@ -2,7 +2,6 @@
 const { InteractionResponseType } = require('discord-interactions');
 const LogHelper = require("../loaders/loghelper");
 const logger = LogHelper.getInstance();
-const data = require("./figures.json")
 const API_SERVER = process.env.API_SERVER || "localhost:3000";
 
 class GIRandomFigure {
@@ -13,10 +12,16 @@ class GIRandomFigure {
 
   send(interaction) {
 
-
+    const origin = this.res;
     const response = fetch(`${API_SERVER}/api/yuanshen/characters`).then(response => response.json())
     .catch(error => {
       console.error(error);
+      origin.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `ERROR - Server is down...`,
+        },
+      });
     });
 
     response.then(content => {
