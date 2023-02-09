@@ -9,10 +9,6 @@ class TestApi {
     this.res = res;
   }
 
-  async fetchData(apiServer) {
-    return await 
-  }
-
   send(interaction, apiServer) {
 
     const response = fetch(`${apiServer}/api/yuanshen/elements`).then(response => response.text())
