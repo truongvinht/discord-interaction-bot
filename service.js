@@ -61,7 +61,7 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (interaction.data.name == TestApi.cmd) {
       const cmd = new TestApi(res);
-      return cmd.send(interaction);
+      return cmd.send(interaction, API_SERVER);
     }
 
     if (interaction.data.name == "dm") {
