@@ -11,7 +11,7 @@ class TestApi {
 
   send(interaction, apiServer) {
 
-    const response = fetch(`${apiServer}/api/yuanshen/elements`).then(response => JSON.stringify(response))
+    const response = fetch(`${apiServer}/api/yuanshen/elements`).then(response => response.json())
     .catch(error => {
       console.error(error);
     });
