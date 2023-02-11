@@ -22,6 +22,21 @@ class GamingService {
     return this.service.fetch(url);
   }
 
+  async asyncFetchTodayTalents() {
+    const date = new Date();
+    let weekday = date.getDay(); // 0-6 Sonntag - Samstag
+
+    switch (weekday) {
+    case 0:
+        weekday = 7;
+        break;
+    default:
+        weekday = Math.abs(weekday);
+    }
+    const url = `${API_SERVER}/api/yuanshen/characters/talents/weekday/${weekday}`;
+    return this.service.fetch(url);
+  }
+
   fetchAllFigures(callback) {
     const service = this;
     (async () => {
@@ -52,6 +67,19 @@ class GamingService {
     const service = this;
     (async () => {
         const result = await service.asyncFetchAllElements();
+        if (result.error) {
+            callback()
+          callback(null, result.error);
+        } else {
+          callback(result.data, null);
+        }
+      })();
+  }
+
+  fetchTodayTalents(callback) {
+    const service = this;
+    (async () => {
+        const result = await service.asyncFetchTodayTalents();
         if (result.error) {
             callback()
           callback(null, result.error);

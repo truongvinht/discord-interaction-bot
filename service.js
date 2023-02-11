@@ -16,6 +16,7 @@ const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
 const GIRandomFigure = require("./commands/GIRandomFigure")
 const GIRandomHealer = require("./commands/GIRandomHealer")
+const GIToday = require("./commands/GIToday")
 
 const app = express();
 
@@ -56,6 +57,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
     if (interaction.data.name == GIRandomHealer.cmd) {
       const cmd = new GIRandomHealer(res);
       return cmd.send(interaction);
+    }
+
+    if (interaction.data.name == GIToday.cmd) {
+      const cmd = new GIToday(res);
+      cmd.send();
+      return;
     }
 
     if (interaction.data.name == "dm") {
@@ -107,6 +114,11 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIRandomHealer.cmd,
       description: "Zufaellige Figurenauswahl für Heiler in Genshin",
+      options: [],
+    },
+    {
+      name: GIToday.cmd,
+      description: "Liste der heute verfuegbaren Farm-Optionen",
       options: [],
     },
     {
