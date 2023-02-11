@@ -26,7 +26,7 @@ class GIRandomPick {
         let pickedType = Math.floor(Math.random() * Math.floor(types.length));
 
         // get the type
-        const type = pickedType[pickedType];
+        const type = types[pickedType];
 
         // fetch element
         const elementCallback = (elementResponse, elementError) => {
