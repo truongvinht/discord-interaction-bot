@@ -16,7 +16,6 @@ const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
 const GIRandomFigure = require("./commands/GIRandomFigure")
 const GIRandomHealer = require("./commands/GIRandomHealer")
-const TestApi = require("./commands/TestApi")
 
 const app = express();
 
