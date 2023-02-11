@@ -1,7 +1,5 @@
 
 const { InteractionResponseType } = require('discord-interactions');
-const LogHelper = require("../loaders/loghelper");
-const logger = LogHelper.getInstance();
 
 class Yo {
   constructor(res) {

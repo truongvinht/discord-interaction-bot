@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require("dotenv").config();
 const APPLICATION_ID = process.env.APPLICATION_ID;
 const TOKEN = process.env.TOKEN;
@@ -9,8 +10,7 @@ const express = require("express");
 const {
   InteractionType,
   InteractionResponseType,
-  verifyKeyMiddleware,
-  Option
+  verifyKeyMiddleware
 } = require("discord-interactions");
 const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick")
@@ -103,22 +103,17 @@ app.get("/register_commands", async (req, res) => {
     },
     {
       name: GIRandomFigure.cmd,
-      description: "Random Figurenauswahl",
+      description: "Zufaellige Figurenauswahl in Genshin",
       options: [],
     },
     {
       name: GIRandomPick.cmd,
-      description: "get random figure to play",
+      description: "Zufaellige Figurenbeschreibung in Genshin",
       options: [],
     },
     {
       name: GIRandomHealer.cmd,
-      description: "get random healer to play",
-      options: [],
-    },
-    {
-      name: TestApi.cmd,
-      description: "try out new api",
+      description: "Zufaellige Figurenauswahl für Heiler in Genshin",
       options: [],
     },
     {

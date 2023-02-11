@@ -1,6 +1,4 @@
 const { InteractionResponseType } = require("discord-interactions");
-const LogHelper = require("../loaders/loghelper");
-const logger = LogHelper.getInstance();
 const data = require("./figures.json");
 
 class GIRandomPick {

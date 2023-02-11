@@ -1,6 +1,6 @@
 
 const { InteractionResponseType } = require('discord-interactions');
-const ApiRequestService = require('../services/ApiRequestService');
+const GamingService = require('../services/GamingService');
 
 class GIRandomFigure {
 
@@ -11,9 +11,6 @@ class GIRandomFigure {
   }
 
   send(interaction) {
-
-    const service = new ApiRequestService('api/yuanshen/characters');
-
     const callback = (response, error) => {
       if (error != null) {
         this.res.send({
@@ -38,6 +35,7 @@ class GIRandomFigure {
       }
     };
 
+    const service = new GamingService();
     service.fetch(callback);
   }
 }
