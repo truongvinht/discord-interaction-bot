@@ -36,7 +36,7 @@ class GIRandomFigure {
     };
 
     const service = new GamingService();
-    service.fetch(callback);
+    service.fetchAllFigures(callback);
   }
 }
 
