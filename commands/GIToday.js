@@ -26,12 +26,12 @@ class GIToday {
         talents.forEach(talent => {
             list.push(talent.name);
           });
-        const talentString = list.join('\n ');
+        const talentString = list.join('\n-');
 
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `Heute sind folgende Talente farmbar ${talentString}.`,
+              content: `Heute sind folgende Talente farmbar: \n-${talentString}.`,
             },
           });
       }
