@@ -22,9 +22,10 @@ class GIToday {
       } else {
         const talents = response.data;
         let list = [];
-        for (const talent in talents) {
+
+        talents.forEach(talent => {
             list.push(talent.name);
-        }
+          });
         const talentString = list.join(', ');
 
         this.res.send({
