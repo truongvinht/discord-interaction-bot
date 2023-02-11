@@ -26,7 +26,7 @@ class GIToday {
         talents.forEach(talent => {
             list.push(talent.name);
           });
-        const talentString = list.join(', ');
+        const talentString = list.join('\n ');
 
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
