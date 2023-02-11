@@ -17,8 +17,8 @@ class ApiRequestService {
         logger.info(error);
       });
 
-    response.then((content) => {
-      callback(content, null);
+    response.then((res) => {
+      callback(res, null);
     });
   }
 }
