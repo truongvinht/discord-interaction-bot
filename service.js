@@ -58,12 +58,6 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == TestApi.cmd) {
-      const cmd = new TestApi(res);
-      cmd.send(interaction);
-      return;
-    }
-
     if (interaction.data.name == "dm") {
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (
