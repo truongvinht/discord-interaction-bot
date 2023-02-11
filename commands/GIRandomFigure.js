@@ -1,31 +1,29 @@
 
 const { InteractionResponseType } = require('discord-interactions');
-const LogHelper = require("../loaders/loghelper");
-const logger = LogHelper.getInstance();
-const API_SERVER = process.env.API_SERVER || "localhost:3000";
+const ApiRequestService = require('../services/ApiRequestService');
 
 class GIRandomFigure {
+  
   static cmd = 'figure';
+
   constructor(res) {
     this.res = res;
   }
 
   send(interaction) {
 
-    const origin = this.res;
-    const response = fetch(`${API_SERVER}/api/yuanshen/characters`).then(response => response.json())
-    .catch(error => {
-      console.error(error);
-      origin.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: `ERROR - Server is down...`,
-        },
-      });
-    });
+    const service = new ApiRequestService('api/yuanshen/characters');
 
-    response.then(content => {
-        const figures = content.data;
+    const callback = (data, error) => {
+      if (error != null) {
+        this.res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: `ERROR - Server is down...`,
+          },
+        });
+      } else {
+        const figures = data;
         const pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
 
         // get the name
@@ -37,7 +35,10 @@ class GIRandomFigure {
               content: `${interaction.member.user.username}, spiele mal ${name}.`,
             },
           });
-    });
+      }
+    };
+
+    service.fetch(callback);
   }
 }
 
