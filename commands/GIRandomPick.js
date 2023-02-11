@@ -1,6 +1,5 @@
 const { InteractionResponseType } = require("discord-interactions");
 const GamingService = require('../services/GamingService');
-const data = require("./figures.json");
 
 class GIRandomPick {
   static cmd = "pick";
@@ -13,9 +12,9 @@ class GIRandomPick {
 
     const own = this;
 
-    const callback = (response, error) => {
-      if (error != null) {
-        this.res.send({
+    const callback = (weaponResponse, weaponError) => {
+      if (weaponError != null) {
+        own.res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             content: `ERROR - Server is down...`,
@@ -23,31 +22,29 @@ class GIRandomPick {
         });
       } else {
         
-        const types = response.data;
+        const types = weaponResponse.data;
         let pickedType = Math.floor(Math.random() * Math.floor(types.length));
-
-
 
         // get the type
         const type = pickedType[pickedType];
 
         // fetch element
-        const elementCallback = (response, error) => {
-          if (error != null) {
-            this.res.send({
+        const elementCallback = (elementResponse, elementError) => {
+          if (elementError != null) {
+            own.res.send({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
               data: {
                 content: `ERROR - Server is down...`,
               },
             });
           } else {
-            const elements = response.data;
+            const elements = elementResponse.data;
             const pickedElement = Math.floor(Math.random() * Math.floor(elements.length));
     
             // get the name
             const name = elements[pickedElement].name;
     
-            this.res.send({
+            own.res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {
                   content: `${interaction.member.user.username}, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet.`,
