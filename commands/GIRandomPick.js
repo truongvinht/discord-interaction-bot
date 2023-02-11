@@ -1,30 +1,65 @@
 const { InteractionResponseType } = require("discord-interactions");
+const GamingService = require('../services/GamingService');
 const data = require("./figures.json");
 
 class GIRandomPick {
   static cmd = "pick";
   constructor(res) {
     this.res = res;
+    this.service = new GamingService();
   }
 
   send(interaction) {
 
-    let types = undefined;
-    let elements = undefined;
+    const own = this;
 
-    elements = data.elements;
+    const callback = (response, error) => {
+      if (error != null) {
+        this.res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: `ERROR - Server is down...`,
+          },
+        });
+      } else {
+        
+        const types = response.data;
+        let pickedType = Math.floor(Math.random() * Math.floor(types.length));
 
-    types = data.types;
 
-    let pickedType = Math.floor(Math.random() * Math.floor(types.length));
-    let pickedElement = Math.floor(Math.random() * Math.floor(elements.length));
 
-    return this.res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
-        content: `${interaction.member.user.username}, suche dir eine ${elements[pickedElement]}-Figur aus, die ${types[pickedType]} ist.`,
-      },
-    });
+        // get the type
+        const type = pickedType[pickedType];
+
+        // fetch element
+        const elementCallback = (response, error) => {
+          if (error != null) {
+            this.res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                content: `ERROR - Server is down...`,
+              },
+            });
+          } else {
+            const elements = response.data;
+            const pickedElement = Math.floor(Math.random() * Math.floor(elements.length));
+    
+            // get the name
+            const name = elements[pickedElement].name;
+    
+            this.res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                  content: `${interaction.member.user.username}, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet.`,
+                },
+              });
+          }
+        };
+        own.service.fetchAllElements(elementCallback);
+      }
+    };
+
+    own.service.fetchAllWeaponTypes(callback);
   }
 }
 

@@ -35,6 +35,11 @@ class GamingService {
     const url = `${API_SERVER}/api/yuanshen/artifacts`;
     this.service.fetch(url, callback);
   }
+
+  fetchAllWeaponTypes(callback) {
+    const url = `${API_SERVER}/api/yuanshen/characters/types`;
+    this.service.fetch(url, callback);
+  }
 }
 
 module.exports = GamingService;
