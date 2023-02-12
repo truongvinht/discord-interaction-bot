@@ -18,8 +18,6 @@ const GIRandomFigure = require("./commands/GIRandomFigure")
 const GIRandomHealer = require("./commands/GIRandomHealer")
 const GIToday = require("./commands/GIToday")
 
-const {getRPSChoices, capitalize} = require('./game');
-
 const app = express();
 
 const discord_api = axios.create({
@@ -36,74 +34,38 @@ const discord_api = axios.create({
 app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
 
-  const {type, id, data} = req.body;
-
-  if (type === InteractionType.APPLICATION_COMMAND) {
-    const {name} = data; 
+  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
+    console.log(interaction.data.name);
 
     // reply yo command
-    if (name === "yo") {
+    if (interaction.data.name == "yo") {
       const cmd = new Yo(res);
       return cmd.send(interaction);
     }
 
-    if (name === GIRandomPick.cmd) {
+    if (interaction.data.name == GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
       return cmd.send(interaction);
     }
 
-    if (name === GIRandomFigure.cmd) {
+    if (interaction.data.name == GIRandomFigure.cmd) {
       const cmd = new GIRandomFigure(res);
       cmd.send(interaction);
       return;
     }
 
-    if (name === GIRandomHealer.cmd) {
+    if (interaction.data.name == GIRandomHealer.cmd) {
       const cmd = new GIRandomHealer(res);
       return cmd.send(interaction);
     }
 
-    if (name === GIToday.cmd) {
+    if (interaction.data.name == GIToday.cmd) {
       const cmd = new GIToday(res);
       cmd.send();
       return;
     }
-     // "challenge" guild command
-    if (name === "challenge" && id) {
-      const userId = req.body.member.user.id;
-      // User's object choice
-      const objectName = req.body.data.options[0].value;
 
-      // Create active game using message ID as the game ID
-      activeGames[id] = {
-        id: userId,
-        objectName
-      };
-
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          // Fetches a random emoji to send from a helper function
-          content: `Rock papers scissors challenge from <@${userId}>`,
-          components: [
-            {
-              type: MessageComponentTypes.ACTION_ROW,
-              components: [
-                {
-                  type: MessageComponentTypes.BUTTON,
-                  // Append the game ID to use later on
-                  custom_id: `accept_button_${req.body.id}`,
-                  label: "Accept",
-                  style: ButtonStyleTypes.PRIMARY
-                }
-              ]
-            }
-          ]
-        }
-      });
-    }
-
-    if (name === "dm") {
+    if (interaction.data.name == "dm") {
       // https://discord.com/developers/docs/resources/user#create-dm
       let c = (
         await discord_api.post(`/users/@me/channels`, {
@@ -164,20 +126,6 @@ app.get("/register_commands", async (req, res) => {
       description: "sends user a DM",
       options: [],
     },
-    {
-      name: "challenge",
-      description: "Challenge to a match of rock paper scissors",
-      options: [
-        {
-          type: 3,
-          name: "object",
-          description: "Pick your object",
-          required: true,
-          choices: createCommandChoices()
-        }
-      ],
-      type: 1
-    },
   ];
   try {
     // api docs - https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
@@ -197,20 +145,5 @@ app.get("/register_commands", async (req, res) => {
 app.get("/", async (req, res) => {
   return res.send("Follow documentation ");
 });
-
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getRPSChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase()
-    });
-  }
-
-  return commandChoices;
-}
 
 module.exports = app;
