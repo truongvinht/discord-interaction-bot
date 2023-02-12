@@ -31,7 +31,7 @@ class GIToday {
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `Heute sind folgende Talente farmbar: \n-${talentString}.`,
+              content: `Heute sind folgende Talente farmbar: \n- ${talentString}`,
             },
           });
       }
