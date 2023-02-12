@@ -43,11 +43,12 @@ class GIRandomPick {
     
             // get the name
             const name = elements[pickedElement].name;
+            const url = elements[pickedElement].image_url;
     
             own.res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {
-                  content: `${interaction.member.user.username}, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet.`,
+                  content: `${interaction.member.user.username}, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet. (${url})`,
                 },
               });
           }
