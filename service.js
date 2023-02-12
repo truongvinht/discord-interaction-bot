@@ -70,7 +70,7 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === TestCommand.cmd) {
       const cmd = new TestCommand(res);
-      cmd.send();
+      cmd.send(interaction);
       return;
     }
 
