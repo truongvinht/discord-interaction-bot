@@ -139,6 +139,24 @@ app.get("/register_commands", async (req, res) => {
           description: "Anzahl der Spieler",
           type: 4,
           required: true,
+          choices: [
+            {
+              name: "Eins",
+              value: 1,
+            },
+            {
+              name: "Zwei",
+              value: 2,
+            },
+            {
+              name: "Drei",
+              value: 3,
+            },
+            {
+              name: "Vier",
+              value: 4,
+            },
+          ],
         },
       ],
     },
