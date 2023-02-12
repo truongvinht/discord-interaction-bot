@@ -34,32 +34,34 @@ const discord_api = axios.create({
 app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
 
-  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
-    console.log(interaction.data.name);
+  const {type, id, data} = req.body;
+
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    const {name} = data; 
 
     // reply yo command
-    if (interaction.data.name == "yo") {
+    if (name === "yo") {
       const cmd = new Yo(res);
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == GIRandomPick.cmd) {
+    if (name === GIRandomPick.cmd) {
       const cmd = new GIRandomPick(res);
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == GIRandomFigure.cmd) {
+    if (name === GIRandomFigure.cmd) {
       const cmd = new GIRandomFigure(res);
       cmd.send(interaction);
       return;
     }
 
-    if (interaction.data.name == GIRandomHealer.cmd) {
+    if (name === GIRandomHealer.cmd) {
       const cmd = new GIRandomHealer(res);
       return cmd.send(interaction);
     }
 
-    if (interaction.data.name == GIToday.cmd) {
+    if (name === GIToday.cmd) {
       const cmd = new GIToday(res);
       cmd.send();
       return;
