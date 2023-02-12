@@ -18,7 +18,7 @@ class GIRandomFigure {
     return this.res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: `${interaction.member.user.username}, spiele mal ${figures[pickedFigure]}.`,
+          content: `<@${interaction.member.user.id}>, spiele mal ${figures[pickedFigure]}.`,
         },
       });
   }

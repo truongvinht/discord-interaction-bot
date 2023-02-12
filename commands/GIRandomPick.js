@@ -48,7 +48,7 @@ class GIRandomPick {
             own.res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {
-                  content: `${interaction.member.user.username}, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet. (${url})`,
+                  content: `<@${interaction.member.user.id}>, suche dir eine ${name}-Figur aus, die ${type}-Waffe verwendet. (${url})`,
                 },
               });
           }
