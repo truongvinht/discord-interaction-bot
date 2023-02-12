@@ -10,14 +10,14 @@ const express = require("express");
 const {
   InteractionType,
   InteractionResponseType,
-  verifyKeyMiddleware
+  verifyKeyMiddleware,
 } = require("discord-interactions");
 const Yo = require("./commands/Yo");
-const GIRandomPick = require("./commands/GIRandomPick")
-const GIRandomFigure = require("./commands/GIRandomFigure")
-const GIRandomHealer = require("./commands/GIRandomHealer")
-const GIToday = require("./commands/GIToday")
-const TestCommand = require("./commands/TestCommand")
+const GIRandomPick = require("./commands/GIRandomPick");
+const GIRandomFigure = require("./commands/GIRandomFigure");
+const GIRandomHealer = require("./commands/GIRandomHealer");
+const GIToday = require("./commands/GIToday");
+const TestCommand = require("./commands/TestCommand");
 
 const app = express();
 
@@ -35,10 +35,10 @@ const discord_api = axios.create({
 app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
 
-  const {type, id, data} = req.body;
+  const { type, id, data } = req.body;
 
   if (type === InteractionType.APPLICATION_COMMAND) {
-    const {name} = data; 
+    const { name } = data;
 
     // reply yo command
     if (name === "yo") {
@@ -133,10 +133,14 @@ app.get("/register_commands", async (req, res) => {
     {
       name: TestCommand.cmd,
       description: "Neue Befehle im Test",
-      options: [{
-        "type": 1,
-        "name": "wert",
-      }],
+      options: [
+        {
+          name: "PL",
+          description: "Anzahl der Spieler",
+          type: 4,
+          required: true,
+        },
+      ],
     },
     {
       name: "dm",
