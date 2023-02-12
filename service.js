@@ -132,14 +132,16 @@ app.get("/register_commands", async (req, res) => {
     },
     {
       name: TestCommand.cmd,
+      type: 1,
       description: "Neue Befehle im Test",
       options: [
         {
-          name: "PL",
+          name: "pl",
           description: "Spieler Anzahl angeben",
-          type: 3,
-          min: 1,
-          max: 4
+          type: 4,
+          min_value: 1,
+          max_value: 4,
+          focus: true
         },
       ],
     },
