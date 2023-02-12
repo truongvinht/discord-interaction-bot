@@ -137,8 +137,9 @@ app.get("/register_commands", async (req, res) => {
         {
           name: "PL",
           description: "Spieler Anzahl angeben",
-          type: 0,
-          required: false
+          type: 3,
+          min: 1,
+          max: 4
         },
       ],
     },
