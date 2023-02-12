@@ -17,6 +17,7 @@ const GIRandomPick = require("./commands/GIRandomPick")
 const GIRandomFigure = require("./commands/GIRandomFigure")
 const GIRandomHealer = require("./commands/GIRandomHealer")
 const GIToday = require("./commands/GIToday")
+const TestCommand = require("./commands/TestCommand")
 
 const app = express();
 
@@ -63,6 +64,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === GIToday.cmd) {
       const cmd = new GIToday(res);
+      cmd.send();
+      return;
+    }
+
+    if (name === TestCommand.cmd) {
+      const cmd = new TestCommand(res);
       cmd.send();
       return;
     }
@@ -122,6 +129,14 @@ app.get("/register_commands", async (req, res) => {
       name: GIToday.cmd,
       description: "Liste der heute verfuegbaren Farm-Optionen",
       options: [],
+    },
+    {
+      name: TestCommand.cmd,
+      description: "Neue Befehle im Test",
+      options: [{
+        "type": 1,
+        "name": "wert",
+      }],
     },
     {
       name: "dm",

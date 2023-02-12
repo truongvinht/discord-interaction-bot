@@ -30,7 +30,7 @@ class GIRandomFigure {
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `<@${interaction.member.user.id}>, spiele mal ${name}. ${url}`,
+              content: `<@${interaction.member.user.id}>, spiele mal ${name}. \n(${url})`,
             },
           });
       }
