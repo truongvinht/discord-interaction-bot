@@ -25,11 +25,12 @@ class GIRandomFigure {
 
         // get the name
         const name = figures[pickedFigure].name;
+        const url = figures[pickedFigure].image_url;
 
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `${interaction.member.user.username}, spiele mal ${name}.`,
+              content: `${interaction.member.user.username}, spiele mal ${name}. ${url}`,
             },
           });
       }
