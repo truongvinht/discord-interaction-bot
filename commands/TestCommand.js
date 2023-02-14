@@ -28,11 +28,12 @@ class TestCommand {
           do {
             const random = Math.floor(Math.random() * figures.length);
             if (!pickedFigures.includes(random)) {
-                //pickedFigures.push(random);
+                
                 const name = figures[random].name;
                 const url = figures[random].image_url;
                 textUrl = `${textUrl} ${url}`;
                 text = `${text} -${name}\n`;
+                pickedFigures.push(figures[random]);
             }
           } while (pickedFigures.length < message.data.options[0].value);
 
