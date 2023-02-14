@@ -19,7 +19,7 @@ class TestCommand {
       } else {
         const figures = response.data;
         console.log(JSON.stringify(message.data));
-        if (Object.prototype.hasOwnProperty(message.data, "options")) {
+        if (Object.prototype.hasOwnProperty.call(message.data, "options")) {
           const pickedFigures = [];
 
           let text =  `<@${message.member.user.id}>, spiele mal \n`;
