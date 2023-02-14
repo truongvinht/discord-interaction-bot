@@ -15,7 +15,6 @@ const {
 const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick");
 const GIRandomFigure = require("./commands/GIRandomFigure");
-const GIRandomHealer = require("./commands/GIRandomHealer");
 const GIToday = require("./commands/GIToday");
 const TestCommand = require("./commands/TestCommand");
 const GIAbyss = require("./commands/GIAbyss");
