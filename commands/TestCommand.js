@@ -18,7 +18,7 @@ class TestCommand {
         });
       } else {
         const figures = response.data;
-        console.log(JSON.stringify(figures));
+        console.log(JSON.stringify(message.data));
         if (Object.prototype.hasOwnProperty(message.data, "options")) {
           const pickedFigures = [];
 
