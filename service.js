@@ -18,6 +18,7 @@ const GIRandomFigure = require("./commands/GIRandomFigure");
 const GIRandomHealer = require("./commands/GIRandomHealer");
 const GIToday = require("./commands/GIToday");
 const TestCommand = require("./commands/TestCommand");
+const GIAbyss = require("./commands/GIAbyss");
 
 const app = express();
 
@@ -57,11 +58,6 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return;
     }
 
-    if (name === GIRandomHealer.cmd) {
-      const cmd = new GIRandomHealer(res);
-      return cmd.send(interaction);
-    }
-
     if (name === GIToday.cmd) {
       const cmd = new GIToday(res);
       cmd.send();
@@ -70,6 +66,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === TestCommand.cmd) {
       const cmd = new TestCommand(res);
+      cmd.send(interaction);
+      return;
+    }
+
+    if (name === GIAbyss.cmd) {
+      const cmd = new GIAbyss(res);
       cmd.send(interaction);
       return;
     }
@@ -121,8 +123,8 @@ app.get("/register_commands", async (req, res) => {
       options: [],
     },
     {
-      name: GIRandomHealer.cmd,
-      description: "Zufaellige Figurenauswahl für Heiler in Genshin",
+      name: GIAbyss.cmd,
+      description: "Dein Team fuer den Abgrund",
       options: [],
     },
     {

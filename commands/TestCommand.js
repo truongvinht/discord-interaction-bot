@@ -32,7 +32,7 @@ class TestCommand {
                 const name = figures[random].name;
                 const url = figures[random].image_url;
                 textUrl = `${textUrl} ${url}`;
-                text = `${text} -${name}\n`;
+                text = `${text} - ${name}\n`;
                 pickedFigures.push(figures[random]);
             }
           } while (pickedFigures.length < message.data.options[0].value);
