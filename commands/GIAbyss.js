@@ -22,12 +22,18 @@ class TestCommand {
 
         let text = `<@${message.member.user.id}>, spiele im Abgrund mit nur Figuren aus dieser Liste:\n`;
 
+        // tmp black list preventing picking it
+        const blacklist = ['Nilou','Tighnari']
+
         do {
           const random = Math.floor(Math.random() * figures.length);
           if (!pickedFigures.includes(random)) {
             const name = figures[random].name;
-            text = `${text} - ${name}\n`;
-            pickedFigures.push(random);
+
+            if (!blacklist.includes(name)) {
+                text = `${text} - ${name}\n`;
+                pickedFigures.push(random);
+            }
           }
         } while (pickedFigures.length < 10);
 
