@@ -23,34 +23,33 @@ class TestCommand {
         let text = `<@${message.member.user.id}>, spiele im Abgrund mit nur Figuren aus dieser Liste:\n`;
 
         // tmp black list preventing picking it
-        const blacklist = ['Nilou','Tighnari']
+        const blacklist = ['Nilou', 'Tighnari'];
 
         // add at least 2 healer
         const extData = require('./figures.json');
-        do {
-            const random = Math.floor(Math.random() * extData.healer.length);
+        const healerList = extData.healer;
+
+        while (true) {
+          let healCounter = 0;
+          do {
+            const random = Math.floor(Math.random() * figures.length);
             if (!pickedFigures.includes(random)) {
-              const name = extData.healer[random];
-  
+              const name = figures[random].name;
+
               if (!blacklist.includes(name)) {
-                  text = `${text} - ${name}\n`;
-                  pickedFigures.push(random);
-              }
-            }
-          } while (pickedFigures.length < 2);
-
-        do {
-          const random = Math.floor(Math.random() * figures.length);
-          if (!pickedFigures.includes(random)) {
-            const name = figures[random].name;
-
-            if (!blacklist.includes(name)) {
                 text = `${text} - ${name}\n`;
                 pickedFigures.push(random);
+                if (healerList.includes(name)) {
+                  healCounter++;
+                }
+              }
             }
-          }
-        } while (pickedFigures.length < 10);
+          } while (pickedFigures.length < 10);
 
+          if (healCounter > 1) {
+            break;
+          }
+        }
         this.res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
