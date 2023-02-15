@@ -25,6 +25,20 @@ class TestCommand {
         // tmp black list preventing picking it
         const blacklist = ['Nilou','Tighnari']
 
+        // add at least 2 healer
+        const extData = require('./figures.json');
+        do {
+            const random = Math.floor(Math.random() * extData.healer.length);
+            if (!pickedFigures.includes(random)) {
+              const name = extData.healer[random].name;
+  
+              if (!blacklist.includes(name)) {
+                  text = `${text} - ${name}\n`;
+                  pickedFigures.push(random);
+              }
+            }
+          } while (pickedFigures.length < 2);
+
         do {
           const random = Math.floor(Math.random() * figures.length);
           if (!pickedFigures.includes(random)) {
