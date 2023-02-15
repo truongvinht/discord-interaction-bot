@@ -30,7 +30,7 @@ class TestCommand {
         do {
             const random = Math.floor(Math.random() * extData.healer.length);
             if (!pickedFigures.includes(random)) {
-              const name = extData.healer[random].name;
+              const name = extData.healer[random];
   
               if (!blacklist.includes(name)) {
                   text = `${text} - ${name}\n`;
