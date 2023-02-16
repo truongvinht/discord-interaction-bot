@@ -13,7 +13,7 @@ class ApiRequestService {
       return { error };
     }
   }
-  async postFetch(url, options) {
+  async fetchWithOption(url, options) {
     try {
       const response = await fetch(url, options);
       const json = await response.json();

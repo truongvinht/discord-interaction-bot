@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 const ApiRequestService = require("./ApiRequestService");
-// eslint-disable-next-line no-undef
 const API_SERVER = process.env.API_SERVER || "localhost:3000";
+const API_TOKEN = process.env.API_TOKEN || "-";
 
 class GamingService {
   constructor() {
@@ -9,17 +10,29 @@ class GamingService {
 
   async asyncFetchAllFigures() {
     const url = `${API_SERVER}/api/yuanshen/characters`;
-    return this.service.fetch(url);
+    return this.service.fetchWithOption(url, {
+      headers: {
+        'x-api-key': API_TOKEN
+      }
+    });
   }
 
   async asyncFetchAllWeaponTypes() {
     const url = `${API_SERVER}/api/yuanshen/characters/types`;
-    return this.service.fetch(url);
+    return this.service.fetchWithOption(url,{
+      headers: {
+        'x-api-key': API_TOKEN
+      }
+    });
   }
 
   async asyncFetchAllElements() {
     const url = `${API_SERVER}/api/yuanshen/elements`;
-    return this.service.fetch(url);
+    return this.service.fetchWithOption(url, {
+      headers: {
+        'x-api-key': API_TOKEN
+      }
+    });
   }
 
   async asyncFetchTodayTalents() {
@@ -34,7 +47,11 @@ class GamingService {
         weekday = Math.abs(weekday);
     }
     const url = `${API_SERVER}/api/yuanshen/characters/talents/weekday/${weekday}`;
-    return this.service.fetch(url);
+    return this.service.fetchWithOption(url, {
+      headers: {
+        'x-api-key': API_TOKEN
+      }
+    });
   }
 
   fetchAllFigures(callback) {
