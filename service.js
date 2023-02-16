@@ -18,6 +18,7 @@ const GIRandomFigure = require("./commands/GIRandomFigure");
 const GIToday = require("./commands/GIToday");
 const TestCommand = require("./commands/TestCommand");
 const GIAbyss = require("./commands/GIAbyss");
+const GIMePick = require("./commands/GIMePick");
 
 const app = express();
 
@@ -71,6 +72,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === GIAbyss.cmd) {
       const cmd = new GIAbyss(res);
+      cmd.send(interaction);
+      return;
+    }
+
+    if (name === GIMePick.cmd) {
+      const cmd = new GIMePick(res);
       cmd.send(interaction);
       return;
     }
@@ -129,6 +136,11 @@ app.get("/register_commands", async (req, res) => {
     {
       name: GIToday.cmd,
       description: "Liste der heute verfuegbaren Farm-Optionen",
+      options: [],
+    },
+    {
+      name: GIMePick.cmd,
+      description: "Zufaellige Figurenauswahl in Genshin",
       options: [],
     },
     {

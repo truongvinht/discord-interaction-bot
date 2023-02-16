@@ -54,6 +54,15 @@ class GamingService {
     });
   }
 
+  async asyncFetchMyFigures(discordId) {
+    const url = `${API_SERVER}/api/yuanshen/characters/discord/${discordId}`;
+    return this.service.fetchWithOption(url, {
+      headers: {
+        'x-api-key': API_TOKEN
+      }
+    });
+  }
+
   fetchAllFigures(callback) {
     const service = this;
     (async () => {
@@ -97,6 +106,19 @@ class GamingService {
     const service = this;
     (async () => {
         const result = await service.asyncFetchTodayTalents();
+        if (result.error) {
+            callback()
+          callback(null, result.error);
+        } else {
+          callback(result.data, null);
+        }
+      })();
+  }
+
+  fetchAllMyFigures(discordId, callback) {
+    const service = this;
+    (async () => {
+        const result = await service.asyncFetchMyFigures(discordId);
         if (result.error) {
             callback()
           callback(null, result.error);
