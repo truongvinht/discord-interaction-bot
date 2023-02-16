@@ -18,7 +18,6 @@ class TestCommand {
             },
           });
         } else {
-            console.log(JSON.stringify(response));
           const { text } = response.choices[0];
 
           this.res.send({
@@ -32,14 +31,6 @@ class TestCommand {
 
       const service = new OpenAiService();
       service.request(callback, message.data.options[0].value);
-
-      // initial response
-      this.res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: `${message.member.user.id}, Antwort wird gesucht....`,
-        },
-      });
 
     } else {
       this.res.send({
