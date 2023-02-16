@@ -18,6 +18,7 @@ class TestCommand {
             },
           });
         } else {
+            console.log(JSON.stringify(response));
           const { text } = response.choices[0];
 
           this.res.send({
