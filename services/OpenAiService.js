@@ -4,7 +4,7 @@ const API_SERVER = "https://api.openai.com/v1";
 
 const TOKEN = process.env.AI_TOKEN || "-";
 const ENGINE = process.env.AI_ENGINE || "text-davinci-003";
-const MAX_TOKENS = process.env.AI_MAXTOKENS || 4000;
+const MAX_TOKENS = process.env.AI_MAXTOKENS || "4000";
 
 
 class OpenAiService {
@@ -18,7 +18,7 @@ class OpenAiService {
     const body = {
         'model': ENGINE,
         'prompt': question,
-        'max_tokens': MAX_TOKENS
+        'max_tokens': parseInt(MAX_TOKENS)
     }
 
     let options = {
