@@ -147,20 +147,6 @@ app.get("/register_commands", async (req, res) => {
       ],
     },
     {
-      name: SmartRequest.cmd,
-      type: 1,
-      description: "Fragen und Antworten",
-      options: [
-        {
-          name: "ask",
-          description: "Deine Frage",
-          type: 3,
-          focus: true,
-          required: true
-        },
-      ],
-    },
-    {
       name: "dm",
       description: "sends user a DM",
       options: [],
