@@ -24,13 +24,12 @@ class GIMePick {
         const pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
 
         // get the name
-        const name = figures[pickedFigure].name;
-        const url = figures[pickedFigure].image_url;
+        const name = figures[pickedFigure];
 
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `<@${interaction.member.user.id}>, spiele mal ${name}. \n(${url})`,
+              content: `<@${interaction.member.user.id}>, spiele mal ${name}.)`,
             },
           });
       }
