@@ -18,7 +18,6 @@ const GIRandomFigure = require("./commands/GIRandomFigure");
 const GIToday = require("./commands/GIToday");
 const TestCommand = require("./commands/TestCommand");
 const GIAbyss = require("./commands/GIAbyss");
-const SmartRequest = require('./commands/SmartRequest');
 
 const app = express();
 
@@ -72,12 +71,6 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === GIAbyss.cmd) {
       const cmd = new GIAbyss(res);
-      cmd.send(interaction);
-      return;
-    }
-
-    if (name === SmartRequest.cmd) {
-      const cmd = new SmartRequest(res);
       cmd.send(interaction);
       return;
     }
