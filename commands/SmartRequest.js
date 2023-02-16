@@ -22,7 +22,7 @@ class TestCommand {
           const { text } = response.choices[0];
 
           this.res.send({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            type: InteractionResponseType.UPDATE_MESSAGE,
             data: {
               content: `${message.member.user.id}: ${message.data.options[0].value}\n\nBot: ${text}`,
             },
@@ -32,6 +32,15 @@ class TestCommand {
 
       const service = new OpenAiService();
       service.request(callback, message.data.options[0].value);
+
+      // initial response
+      this.res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `${message.member.user.id}, Antwort wird gesucht....`,
+        },
+      });
+
     } else {
       this.res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
