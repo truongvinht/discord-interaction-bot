@@ -1,6 +1,6 @@
 const ApiRequestService = require("./ApiRequestService");
 // eslint-disable-next-line no-undef
-const API_SERVER = "https://api.openai.com/v1/";
+const API_SERVER = "https://api.openai.com/v1";
 
 const TOKEN = process.env.AI_TOKEN || "-";
 const ENGINE = process.env.AI_ENGINE || "text-davinci-003";
