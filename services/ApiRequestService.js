@@ -13,6 +13,16 @@ class ApiRequestService {
       return { error };
     }
   }
+  async postFetch(url, options) {
+    try {
+      const response = await fetch(url, options);
+      const json = await response.json();
+      return { data: json };
+    } catch (error) {
+      logger.info(error);
+      return { error };
+    }
+  }
 }
 
 module.exports = ApiRequestService;

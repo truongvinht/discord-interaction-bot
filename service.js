@@ -18,6 +18,7 @@ const GIRandomFigure = require("./commands/GIRandomFigure");
 const GIToday = require("./commands/GIToday");
 const TestCommand = require("./commands/TestCommand");
 const GIAbyss = require("./commands/GIAbyss");
+const SmartRequest = require('./commands/SmartRequest');
 
 const app = express();
 
@@ -71,6 +72,12 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
 
     if (name === GIAbyss.cmd) {
       const cmd = new GIAbyss(res);
+      cmd.send(interaction);
+      return;
+    }
+
+    if (name === SmartRequest.cmd) {
+      const cmd = new SmartRequest(res);
       cmd.send(interaction);
       return;
     }
@@ -143,6 +150,20 @@ app.get("/register_commands", async (req, res) => {
           min_value: 1,
           max_value: 4,
           focus: true
+        },
+      ],
+    },
+    {
+      name: SmartRequest.cmd,
+      type: 1,
+      description: "Fragen und Antworten",
+      options: [
+        {
+          name: "ask",
+          description: "Deine Frage",
+          type: 3,
+          focus: true,
+          required: true
         },
       ],
     },
