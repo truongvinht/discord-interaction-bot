@@ -4,7 +4,7 @@ const GamingService = require('../services/GamingService');
 
 class GIRandomFigure {
 
-  static cmd = 'figure';
+  static cmd = 'rng';
 
   constructor(res) {
     this.res = res;
