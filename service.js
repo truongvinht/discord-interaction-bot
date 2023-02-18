@@ -140,7 +140,7 @@ app.get("/register_commands", async (req, res) => {
     },
     {
       name: GIMePick.cmd,
-      description: "Zufaellige Figurenauswahl in Genshin",
+      description: "Zufaellige Figur in Genshin, die du hast",
       options: [],
     },
     {

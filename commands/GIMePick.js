@@ -4,7 +4,7 @@ const GamingService = require('../services/GamingService');
 
 class GIMePick {
 
-  static cmd = 'fig';
+  static cmd = 'me';
 
   constructor(res) {
     this.res = res;
@@ -20,23 +20,21 @@ class GIMePick {
           },
         });
       } else {
-        const figures = response.data;
-        const pickedFigure = Math.floor(Math.random() * Math.floor(figures.length));
-
         // get the name
-        const name = figures[pickedFigure];
+        const name = response.name;
+        const url = response.image_url;
 
         this.res.send({
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: {
-              content: `<@${interaction.member.user.id}>, spiele mal ${name}.`,
+              content: `<@${interaction.member.user.id}>, spiele mal ${name}. (${url})`,
             },
           });
       }
     };
 
     const service = new GamingService();
-    service.fetchAllMyFigures(interaction.member.user.id, callback);
+    service.fetchMyFigure(interaction.member.user.id, callback);
   }
 }
 

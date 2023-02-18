@@ -54,8 +54,8 @@ class GamingService {
     });
   }
 
-  async asyncFetchMyFigures(discordId) {
-    const url = `${API_SERVER}/api/yuanshen/characters/discord/${discordId}`;
+  async asyncFetchMyFigure(discordId) {
+    const url = `${API_SERVER}/api/yuanshen/discord/${discordId}/random_figure`;
     return this.service.fetchWithOption(url, {
       headers: {
         'x-api-key': API_TOKEN
@@ -115,10 +115,10 @@ class GamingService {
       })();
   }
 
-  fetchAllMyFigures(discordId, callback) {
+  fetchMyFigure(discordId, callback) {
     const service = this;
     (async () => {
-        const result = await service.asyncFetchMyFigures(discordId);
+        const result = await service.asyncFetchMyFigure(discordId);
         if (result.error) {
             callback()
           callback(null, result.error);
