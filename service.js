@@ -16,7 +16,7 @@ const Yo = require("./commands/Yo");
 const GIRandomPick = require("./commands/GIRandomPick");
 const GIRandomFigure = require("./commands/GIRandomFigure");
 const GIToday = require("./commands/GIToday");
-const TestCommand = require("./commands/TestCommand");
+const GITeam = require("./commands/GITeam");
 const GIAbyss = require("./commands/GIAbyss");
 const GIMePick = require("./commands/GIMePick");
 
@@ -64,8 +64,8 @@ app.post("/interactions", verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
       return;
     }
 
-    if (name === TestCommand.cmd) {
-      const cmd = new TestCommand(res);
+    if (name === GITeam.cmd) {
+      const cmd = new GITeam(res);
       cmd.send(interaction);
       return;
     }
@@ -144,9 +144,9 @@ app.get("/register_commands", async (req, res) => {
       options: [],
     },
     {
-      name: TestCommand.cmd,
+      name: GITeam.cmd,
       type: 1,
-      description: "Neue Befehle im Test",
+      description: "Zufaelliges Team in Genshin",
       options: [
         {
           name: "pl",

@@ -1,8 +1,8 @@
 const { InteractionResponseType } = require("discord-interactions");
 const GamingService = require("../services/GamingService");
 
-class TestCommand {
-  static cmd = "test";
+class GITeamCommand {
+  static cmd = "team";
   constructor(res) {
     this.res = res;
   }
@@ -18,7 +18,6 @@ class TestCommand {
         });
       } else {
         const figures = response.data;
-        console.log(JSON.stringify(message.data));
         if (Object.prototype.hasOwnProperty.call(message.data, "options")) {
           const pickedFigures = [];
 
@@ -65,13 +64,7 @@ class TestCommand {
 
     const service = new GamingService();
     service.fetchAllFigures(callback);
-    // return this.res.send({
-    //     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    //     data: {
-    //       content: `<@${message.member.user.id}>: ${message.data.options[0].value}.`,
-    //     },
-    //   });
   }
 }
 
-module.exports = TestCommand;
+module.exports = GITeamCommand;
